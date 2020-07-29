@@ -25,6 +25,9 @@ const defaultTo = (or) => (value) => value === undefined ? or : value
 
 const extract = f => typeof f === "function" ? f(): f
 
+const reverse = arr => [...arr].reverse()
+const takeLast = (n,arr) => reverse(reverse(arr).slice(0,n))
+
 module.exports = {
     apply,
     split,
@@ -37,5 +40,7 @@ module.exports = {
     min,
     defaultTo,
     effect,
-    extract
+    extract,
+    reverse,
+    takeLast,
 }
