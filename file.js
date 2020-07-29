@@ -1,7 +1,7 @@
 const fs = require("fs")
 const path = require("path")
 const Result = require('./result')
-const { last } = require('./utils')
+const { last, takeLast } = require('./utils')
 
 const dataPath = path.join(__dirname,"/data.json")
 const ceroState = {
@@ -65,9 +65,7 @@ const saveCommand = (cmd) => {
         if( last(data.history) === cmd ){
             newHistory = data.history
         } else {
-            newHistory = data.history.length > 20 ?
-                data.history.slice(data.history.length - 20)
-                : [...data.history, command]
+            newHistory = [...takeLast(20,data.history), command]
         }
         return {
             ...data,
